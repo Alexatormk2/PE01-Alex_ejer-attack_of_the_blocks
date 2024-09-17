@@ -1,26 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class followmouse : MonoBehaviour
 {//variables que guarda la posicion del raton y velocidad
-    private Vector3 mousePosition;
-	public float moveSpeed = 0.1f;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
+   public float maxMoveSpeed = 10;
+    public float smoothTime = 0.3f;
+
+    Vector2 currentVelocity;
+
     void Update()
-    {
-        //funcion que detecta al moouse moverse mientras se precsiona un click
-     if (Input.GetMouseButton(0)) {
-			mousePosition = Input.mousePosition;
-			mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-			transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
-		}
 
-	}   
+    {
+        //funcion que detecta la posicion del raton u mueve el sprite en base a la velocidad de las variavles
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = Vector2.SmoothDamp(transform.position, mousePosition, ref currentVelocity, smoothTime, maxMoveSpeed); 
+    }  
     }
 
