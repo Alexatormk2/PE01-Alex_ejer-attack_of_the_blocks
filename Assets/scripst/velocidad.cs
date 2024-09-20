@@ -20,7 +20,7 @@ public class velocidad : MonoBehaviour
     //añade una fuerza relativa que impulsa la esfera en una direccion
 
    
-           esfera.AddRelativeForce( transform.position * 6);
+           esfera.AddRelativeForce( transform.position * 1);
        
     }
    

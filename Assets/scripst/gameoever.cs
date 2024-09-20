@@ -5,36 +5,42 @@ using UnityEngine;
 
 public class gameoever : MonoBehaviour
 {
-    // Start is called before the first frame updat
+
+    //vidas del jugador son los hits que puede comer y timer para el cierre del juego
     public int vidas = 3;
-public float timer = 60;
-public float timerEnd = 10;
-public Collider2D  esfera;
+public float timer = 20;
 
-public Collider2D  camion;
+  
 
-
-    void Start()
-    {
-        
+//metodo que revisa las colisiones las vidas restantes dle jugador y si son igual a 0 cierra el juego 
+void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.tag == "bola" && vidas >0){
+         Debug.Log("hit");
+        vidas--;
     }
+    else if(collision.gameObject.tag == "bola" && vidas <=0){
+          Debug.Log("game over");
+        Destroy(gameObject);
+        //for que hace que se cierre el juego tras acabar la partida
+        for(int contador =0; contador<timer;contador++){
 
-    // Update is called once per frame
-    void Update()
-    {       
-         void OnTriggerEnter2D(Collider2D collision){if(collision.Equals(camion)&& vidas>0){vidas--;}
-         if(collision.Equals(camion)&& vidas<=0) { 
-               for(float a = 0f;a<= timerEnd; a++){
-                Debug.Log("se cierra el juego en  "+ a +"  seg");  
-                if(a==timerEnd){    Application.Quit();
+Debug.Log("se cierra en  " + contador);
+        }
+       
+         
+         
+    
+         Application.Quit();
+       
     }
-    }
+}
+
+    
+    
     
 
 
 
 }
 
-    }
-}
-}
