@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class spawnerbola : MonoBehaviour
 {
    
-   
+
 //variables para definir que objeto hace spawn, su posicoin y sus contadores
  public GameObject boom;
  float x = 1;
@@ -32,6 +33,8 @@ public void spawn(){
     //el metodo start lo invoca
     void Start()
     {
-        spawn();
+         spawn();
+
+       
     }
 }

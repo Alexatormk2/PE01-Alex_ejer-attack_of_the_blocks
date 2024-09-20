@@ -8,6 +8,7 @@ public class salir : MonoBehaviour
     void Start()
     {//hace que el cursor se oculte
         Cursor.visible = false;
+        
     }
 
   
