@@ -13,14 +13,19 @@ public class GameOver : MonoBehaviour
 
     public Rigidbody2D rigidtruck;
     bool nodamage = false;
-    public float invulnerabilityframes = 20f;
+    public float invulnerabilityframes = 40f;
 
  
 //metodo que revisa las colisiones y las vidas restantes dle jugador y si son igual a 0 muestra el menu de game over 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        invulnerabilityframes = 20f;
-        if( collision.gameObject.tag == "bola" && hearts >=1)
+      
+        if(collision.gameObject.tag == "heal")
+        {
+        hearts ++;
+        }
+        
+        else if( collision.gameObject.tag == "bola" && hearts >=1)
         {
                 
             //all recibir daño resta una vida de la variable y muestra en consola las vidas restantes, aparte permiete entrar al if para activar la invencibildiad
