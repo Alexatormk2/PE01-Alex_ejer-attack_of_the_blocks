@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class scenemanagergameover : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     //descarga todas las escenas que no esten activas
     void Start()
     {
+        audioSource.PlayOneShot(audioClip);
         Cursor.visible = true;
-SceneManager.UnloadSceneAsync("SampleScene", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+    
 
  
     }

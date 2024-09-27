@@ -12,6 +12,8 @@ public class GameOver : MonoBehaviour
     public int hearts = 3;
 
     public Rigidbody2D rigidtruck;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     bool nodamage = false;
     public float invulnerabilityframes = 40f;
 
@@ -28,11 +30,12 @@ public class GameOver : MonoBehaviour
         else if( collision.gameObject.tag == "bola" && hearts >=1)
         {
                 
+                audioSource.PlayOneShot(audioClip);
             //all recibir daño resta una vida de la variable y muestra en consola las vidas restantes, aparte permiete entrar al if para activar la invencibildiad
                 hearts--;
                 Debug.Log("remaining hearts " + hearts);
                 nodamage = true;
-                    if(nodamage = true && hearts>0&& invulnerabilityframes >0)
+                    if(nodamage == true && hearts>0 && invulnerabilityframes >0)
                     {   
                         rigidtruck.Sleep();
                         invulnerabilityframes =-Time.deltaTime;
@@ -41,7 +44,7 @@ public class GameOver : MonoBehaviour
                     }
                     else
                     {
-                        invulnerabilityframes = 0;
+                        invulnerabilityframes = 60f;
                         rigidtruck.WakeUp();
                         Debug.Log("invu run out");
                         nodamage = false;
@@ -54,9 +57,10 @@ public class GameOver : MonoBehaviour
         else if ( collision.gameObject.tag == "bola" && hearts <=0)
         {
                 Debug.Log("game over");
-
+           
     
                 SceneManager.LoadSceneAsync( "game over", LoadSceneMode.Single);
+                SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         } 
         
         
