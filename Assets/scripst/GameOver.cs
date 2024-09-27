@@ -14,12 +14,13 @@ public class GameOver : MonoBehaviour
     public int hearts = 3;
     public Text heartext;
     public Text timertext;
-    public Rigidbody2D rigidtruck;
+    public Text timermin;
+    public Collider2D rigidtruck;
     public AudioSource audioSource;
     public AudioClip audioClip;
     bool nodamage = false;
-    public float invulnerabilityframes = 30f;
-    public float roundtime = 120f;
+    public float invulnerabilityframes = 1f;
+    public float roundtime = 1f;
 
  
 //metodo que revisa las colisiones y las vidas restantes dle jugador y si son igual a 0 muestra el menu de game over 
@@ -38,10 +39,12 @@ public class GameOver : MonoBehaviour
         {
         roundtime -=Time.deltaTime;
 
-        float minutes = Mathf.FloorToInt(roundtime / 60);  
+        
         float seconds = Mathf.FloorToInt(roundtime % 60);
 
-        timertext.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+      //  timertext.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+      timertext.text = seconds.ToString();
+      timermin.text ="0";
         }
         else
         {
@@ -75,16 +78,16 @@ public class GameOver : MonoBehaviour
                 Debug.Log("remaining hearts " + hearts);
                 nodamage = true;
                     if(nodamage == true && hearts>=1 && invulnerabilityframes >0)
-                    {   
-                        
+                    {   for(float contador = 0f;contador <= invulnerabilityframes;contador++){
+                        rigidtruck.enabled =false;
                         invulnerabilityframes -=Time.deltaTime;
                             Debug.Log("you cant take damege on " +invulnerabilityframes );
-                        rigidtruck.Sleep();
+                    }
                     }
                     else
                     {
                         invulnerabilityframes = 30f;
-                        rigidtruck.WakeUp();
+                        rigidtruck.enabled =true;
                         Debug.Log("invu run out");
                         nodamage = false;
                     

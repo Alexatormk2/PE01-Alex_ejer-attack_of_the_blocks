@@ -9,8 +9,12 @@ public class scenemanager : MonoBehaviour
     void escenacmabiar(){
           SceneManager.LoadSceneAsync( "game over", LoadSceneMode.Additive);
   }
+
+
+
     void Start()
     {
+        SceneManager.UnloadSceneAsync("mainmenu", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 SceneManager.UnloadSceneAsync("game over", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 
  

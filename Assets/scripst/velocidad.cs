@@ -35,13 +35,11 @@ void OnCollisionEnter2D(Collision2D collision)
        
     }
    
-    void FixedUpdate()
-
-    {
+   
         
    
         
-    } 
+    
 
    
 }
