@@ -18,85 +18,81 @@ public class GameOver : MonoBehaviour
     public Collider2D rigidtruck;
     public AudioSource audioSource;
     public AudioClip audioClip;
-    bool nodamage = false;
-    public float invulnerabilityframes = 1f;
-    public float roundtime = 1f;
+    public AudioClip audioInvuOn;
+    public AudioClip audioInvuOff;
+    public GameObject repairkit;
+    
+    public float invulnerabilitySec =20f;
+    public float roundtime =120f;
 
  
-//metodo que revisa las colisiones y las vidas restantes dle jugador y si son igual a 0 muestra el menu de game over 
-  
+
   void Start()
   {
-    
+    //carga el valor inicial de las vidas en el cuadro de hp
         heartext.text = hearts.ToString();
-
-     
-
   }
-  void Update()
+
+
+ void  Update()
   {
-   if(roundtime>0)
-        {
-        roundtime -=Time.deltaTime;
-
-        
-        float seconds = Mathf.FloorToInt(roundtime % 60);
-
-      //  timertext.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-      timertext.text = seconds.ToString();
-      timermin.text ="0";
-        }
-        else
-        {
-        roundtime=0;
-        }
-    if(roundtime==0 && hearts>=1)
-        {
-
-             SceneManager.LoadSceneAsync( "youwin", LoadSceneMode.Single);
-             SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-        }
-
+    //meotod que sirve para poner un tiempo limite la jugador
+  Invoke(nameof( winScreen),10);
   }
+
+  void winScreen()
+  {
+             
+             SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+             SceneManager.LoadSceneAsync( "youwin", LoadSceneMode.Single);
+  }
+  //esta funcion se encragar de desactivar la invulnerabilidad cuando su cuenta se acaba
+  void InvulnerabilityEnd()
+  {
+    rigidtruck.enabled =true;
+    audioSource.PlayOneShot(audioInvuOff);
+  }
+
   
     void OnCollisionEnter2D(Collision2D collision)
     {
-      
+        //power up que cura  o aumenta la vida maixma al jugador
         if(collision.gameObject.tag == "heal")
         {
-        hearts ++;
-        heartext.text = hearts.ToString();
+          hearts ++;
+          heartext.text = hearts.ToString();
+          Destroy(collision.gameObject);
+    
         }
+      //al recibir daño desactiva por x tiempo el collider para sobrevivir un poco
         
-        else if( collision.gameObject.tag == "bola" && hearts >=1)
+        
+        else if( collision.gameObject.tag == "bola" && hearts >0)
         {
                 
                 audioSource.PlayOneShot(audioClip);
-            //all recibir daño resta una vida de la variable y muestra en consola las vidas restantes, aparte permiete entrar al if para activar la invencibildiad
+            //all recibir daño resta una vida de la variable y muestra en consola las vidas restantes y reproduce dos audios uno al recibir daño y otro al activar la invulnerabilidad
                 hearts--;
                 heartext.text = hearts.ToString();
                 Debug.Log("remaining hearts " + hearts);
-                nodamage = true;
-                    if(nodamage == true && hearts>=1 && invulnerabilityframes >0)
-                    {   for(float contador = 0f;contador <= invulnerabilityframes;contador++){
-                        rigidtruck.enabled =false;
-                        invulnerabilityframes -=Time.deltaTime;
-                            Debug.Log("you cant take damege on " +invulnerabilityframes );
-                    }
-                    }
-                    else
-                    {
-                        invulnerabilityframes = 30f;
-                        rigidtruck.enabled =true;
-                        Debug.Log("invu run out");
-                        nodamage = false;
-                    
-                    }
+              
+                rigidtruck.enabled =false;
+                audioSource.PlayOneShot(audioInvuOn);
+
+                Invoke(nameof(InvulnerabilityEnd), invulnerabilitySec);
+                
+                     
+                        invulnerabilitySec -=Time.deltaTime;
+                        
+                        invulnerabilitySec = 15f;
+                       
+                       
+                   
 
 
 
         }
-        else if ( collision.gameObject.tag == "bola" && hearts <=0)
+        else if (hearts <=0)
         {
                 Debug.Log("game over");
            

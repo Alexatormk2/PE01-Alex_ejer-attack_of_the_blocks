@@ -499,7 +499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b63a849c4d65034fa3f2086bde2b570, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 343819c21f8c36749af86eed9233303d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -789,7 +789,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -186.8, y: 394}
+  m_AnchoredPosition: {x: -45, y: 394}
   m_SizeDelta: {x: 434.87, y: 259.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778969138
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\nGAME\n OVER"
+  m_text: "\n\n  You\nSurvived"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -839,8 +839,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120
-  m_fontSizeBase: 120
+  m_fontSize: 110
+  m_fontSizeBase: 110
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1004,7 +1004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89, y: -315}
+  m_AnchoredPosition: {x: -124, y: -315}
   m_SizeDelta: {x: 341.74, y: 198.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1909378260
@@ -1040,7 +1040,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Retry
+  m_Text: Restart
 --- !u!222 &1909378261
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 2006314793}
-  audioClip: {fileID: 8300000, guid: 430a699021ecacb41a6ff8d58b0386c8, type: 3}
+  audioClip: {fileID: 8300000, guid: 2b7a944464971c44a9442ea97f404ff9, type: 3}
 --- !u!114 &2006314792
 MonoBehaviour:
   m_ObjectHideFlags: 0
