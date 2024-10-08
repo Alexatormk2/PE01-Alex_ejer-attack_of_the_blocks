@@ -17,6 +17,12 @@ public void Begingame()
      SceneManager.LoadSceneAsync( "gamescreen", LoadSceneMode.Additive);
      SceneManager.UnloadSceneAsync("mainmenu", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 }
+public void MainMenu()
+{
+     SceneManager.UnloadSceneAsync("game over", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+     SceneManager.LoadSceneAsync( "mainmenu", LoadSceneMode.Additive);
+     
+}
 public void Retry()
 {
     SceneManager.LoadSceneAsync( "gamescreen", LoadSceneMode.Single);

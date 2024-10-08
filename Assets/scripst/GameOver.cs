@@ -14,16 +14,23 @@ public class GameOver : MonoBehaviour
     public int hearts = 3;
     public Text heartext;
     public Text timertext;
-    public Text timermin;
+    public Text timeInvu;
+
     public Collider2D rigidtruck;
     public AudioSource audioSource;
+    public AudioClip audioSPikeBuster;
     public AudioClip audioClip;
+    public AudioClip audioHeal;
     public AudioClip audioInvuOn;
+    public AudioClip audioHit;
     public AudioClip audioInvuOff;
     public GameObject repairkit;
-    
-    public float invulnerabilitySec =20f;
-    public float roundtime =120f;
+    public int score =0;
+    public float invulnerabilitySec =15f;
+    public float roundtime =60f;
+    bool invuOn = false;
+    bool shieldOn = false; 
+
 
  
 
@@ -31,18 +38,26 @@ public class GameOver : MonoBehaviour
   {
     //carga el valor inicial de las vidas en el cuadro de hp
         heartext.text = hearts.ToString();
+
+        //PlayerPrefs.Save
   }
 
 
  void  Update()
   {
     //meotod que sirve para poner un tiempo limite la jugador
-  Invoke(nameof( winScreen),10);
+  TimerRonda();
+  Invoke(nameof( winScreen),roundtime);
+  if(invuOn == true)
+  {
+    TimerInvu();
+  }
+
   }
 
   void winScreen()
   {
-             
+   score = 60;         
              SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
              SceneManager.LoadSceneAsync( "youwin", LoadSceneMode.Single);
   }
@@ -51,7 +66,22 @@ public class GameOver : MonoBehaviour
   {
     rigidtruck.enabled =true;
     audioSource.PlayOneShot(audioInvuOff);
+    timeInvu.text = "0";
+    invulnerabilitySec = 20;
+    invuOn = false;
   }
+
+  void TimerRonda(){
+    timertext.text = roundtime.ToString();
+      roundtime -=Time.deltaTime;
+  }
+  void TimerInvu(){
+
+    timeInvu.text = invulnerabilitySec.ToString();
+    invulnerabilitySec -=Time.deltaTime;
+  
+  }
+
 
   
     void OnCollisionEnter2D(Collision2D collision)
@@ -62,11 +92,26 @@ public class GameOver : MonoBehaviour
           hearts ++;
           heartext.text = hearts.ToString();
           Destroy(collision.gameObject);
+          audioSource.PlayOneShot(audioHeal);
     
         }
-      //al recibir daño desactiva por x tiempo el collider para sobrevivir un poco
+        if(collision.gameObject.tag == "spikebuster")
+        {
+          audioSource.PlayOneShot(audioSPikeBuster);
+          shieldOn = true;
+          Destroy(collision.gameObject);
+          
+
+        }
         
-        
+      
+        //si el power up de spike buster esta activo destruye la bola con la que choque
+        if(collision.gameObject.tag == "bola" && shieldOn ==true)        
+        {
+          Destroy(collision.gameObject);
+          audioSource.PlayOneShot(audioHit);
+         shieldOn = false;
+        }
         else if( collision.gameObject.tag == "bola" && hearts >0)
         {
                 
@@ -78,19 +123,9 @@ public class GameOver : MonoBehaviour
               
                 rigidtruck.enabled =false;
                 audioSource.PlayOneShot(audioInvuOn);
-
+                invuOn = true;
                 Invoke(nameof(InvulnerabilityEnd), invulnerabilitySec);
-                
-                     
-                        invulnerabilitySec -=Time.deltaTime;
-                        
-                        invulnerabilitySec = 15f;
-                       
-                       
-                   
-
-
-
+         
         }
         else if (hearts <=0)
         {
