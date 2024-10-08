@@ -11,7 +11,7 @@ public class GameOver : MonoBehaviour
 
 
     //vidas del jugador son los hits que puede comer y timer para el cierre del juego
-    public int hearts = 3;
+    int hearts = 1;
     public Text heartext;
     public Text timertext;
     public Text timeInvu;
@@ -26,10 +26,11 @@ public class GameOver : MonoBehaviour
     public AudioClip audioInvuOff;
     public GameObject repairkit;
     public int score =0;
-    public float invulnerabilitySec =15f;
+    public float invulnerabilitySec =10f;
     public float roundtime =60f;
     bool invuOn = false;
     bool shieldOn = false; 
+
 
 
  
@@ -57,9 +58,11 @@ public class GameOver : MonoBehaviour
 
   void winScreen()
   {
-   score = 60;         
-             SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-             SceneManager.LoadSceneAsync( "youwin", LoadSceneMode.Single);
+      PlayerPrefs.SetInt("score",score);
+      PlayerPrefs.Save();
+               
+      SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+      SceneManager.LoadSceneAsync( "youwin", LoadSceneMode.Single);
   }
   //esta funcion se encragar de desactivar la invulnerabilidad cuando su cuenta se acaba
   void InvulnerabilityEnd()
@@ -67,19 +70,22 @@ public class GameOver : MonoBehaviour
     rigidtruck.enabled =true;
     audioSource.PlayOneShot(audioInvuOff);
     timeInvu.text = "0";
-    invulnerabilitySec = 20;
+    invulnerabilitySec = 10;
     invuOn = false;
   }
 
   void TimerRonda(){
     timertext.text = roundtime.ToString();
       roundtime -=Time.deltaTime;
+       score++;
+
+
   }
   void TimerInvu(){
 
     timeInvu.text = invulnerabilitySec.ToString();
     invulnerabilitySec -=Time.deltaTime;
-  
+   
   }
 
 
@@ -120,6 +126,16 @@ public class GameOver : MonoBehaviour
                 hearts--;
                 heartext.text = hearts.ToString();
                 Debug.Log("remaining hearts " + hearts);
+                if (hearts <=0)
+                  {
+                    score =-50;
+                    Debug.Log("game over");
+                    PlayerPrefs.SetInt("score",score);
+                    PlayerPrefs.Save();
+        
+                    SceneManager.LoadSceneAsync( "game over", LoadSceneMode.Single);
+                    SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+                  } 
               
                 rigidtruck.enabled =false;
                 audioSource.PlayOneShot(audioInvuOn);
@@ -127,14 +143,7 @@ public class GameOver : MonoBehaviour
                 Invoke(nameof(InvulnerabilityEnd), invulnerabilitySec);
          
         }
-        else if (hearts <=0)
-        {
-                Debug.Log("game over");
-           
-    
-                SceneManager.LoadSceneAsync( "game over", LoadSceneMode.Single);
-                SceneManager.UnloadSceneAsync("gamescreen", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-        } 
+        
         
         
     }

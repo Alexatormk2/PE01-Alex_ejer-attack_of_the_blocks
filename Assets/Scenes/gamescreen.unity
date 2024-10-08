@@ -1097,7 +1097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a044ed4009b3849bb216fc1d5986ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearts: 3
   heartext: {fileID: 2118836053}
   timertext: {fileID: 1216401123}
   timeInvu: {fileID: 539041767}
@@ -1105,7 +1104,9 @@ MonoBehaviour:
   audioSource: {fileID: 1495162723}
   audioSPikeBuster: {fileID: 8300000, guid: 20247c61bed611c4ab32abebbe87d961, type: 3}
   audioClip: {fileID: 8300000, guid: 9d18ab18ce91a71438b70a3ff3aa2e0c, type: 3}
+  audioHeal: {fileID: 0}
   audioInvuOn: {fileID: 8300000, guid: 6971e942be36e0148802236e7b0f5199, type: 3}
+  audioHit: {fileID: 8300000, guid: ab1203337e59aeb4eb81c4d0101a7957, type: 3}
   audioInvuOff: {fileID: 8300000, guid: 5d0fe983ca869fc4f9b13efb6448f457, type: 3}
   repairkit: {fileID: 0}
   score: 0
