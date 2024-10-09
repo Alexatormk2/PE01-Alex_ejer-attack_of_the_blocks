@@ -507,7 +507,7 @@ Camera:
   m_GameObject: {fileID: 698554072}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1292,6 +1292,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score1text: {fileID: 578452772}
   score2text: {fileID: 1057430789}
+  score3text: {fileID: 2136954855}
+  score4text: {fileID: 1529074534}
+  score5text: {fileID: 781399118}
   score: 0000000000000000000000000000000000000000
 --- !u!1 &1332627886
 GameObject:

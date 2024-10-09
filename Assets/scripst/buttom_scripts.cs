@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,19 +15,41 @@ public void Salirse()
 public void Begingame()
 {
 
-     SceneManager.LoadSceneAsync( "gamescreen", LoadSceneMode.Additive);
+     SceneManager.LoadSceneAsync( "gamescreen", LoadSceneMode.Single);
      SceneManager.UnloadSceneAsync("mainmenu", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 }
 public void MainMenu()
 {
-     SceneManager.UnloadSceneAsync("game over", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-     SceneManager.LoadSceneAsync( "mainmenu", LoadSceneMode.Additive);
+     SceneManager.LoadSceneAsync( "mainmenu", LoadSceneMode.Single);
+     SceneManager.UnloadSceneAsync("gameover", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+     
      
 }
 public void Retry()
 {
     SceneManager.LoadSceneAsync( "gamescreen", LoadSceneMode.Single);
-    SceneManager.UnloadSceneAsync("game over", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+    SceneManager.UnloadSceneAsync("gameover", UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+}
+public void pauseGame()
+{
+SceneManager.LoadSceneAsync("pausescreen",LoadSceneMode.Additive);
+Time.timeScale =0;
+}
+public void ResumeGame()
+{
+     SceneManager.UnloadSceneAsync("pausescreen");
+     
+     Time.timeScale = 1;
+     
+}
+public void Update()
+{
+      if(Input.GetKeyDown(KeyCode.Escape)){
+        pauseGame();
+        
+        
+          
+        }
 }
   
 }
