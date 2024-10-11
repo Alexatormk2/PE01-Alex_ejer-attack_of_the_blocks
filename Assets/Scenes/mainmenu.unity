@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1262417190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcee3e933f5f0ac438c8e4ef9af275dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8612443c267eb33498254052a1795b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   score1text: {fileID: 578452772}
@@ -1295,7 +1295,7 @@ MonoBehaviour:
   score3text: {fileID: 2136954855}
   score4text: {fileID: 1529074534}
   score5text: {fileID: 781399118}
-  score: 0000000000000000000000000000000000000000
+  score: 00000000000000000000000000000000
 --- !u!1 &1332627886
 GameObject:
   m_ObjectHideFlags: 0

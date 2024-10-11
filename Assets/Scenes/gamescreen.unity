@@ -467,7 +467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.9574, y: -4.76}
+  m_AnchoredPosition: {x: -9.95, y: -4.76}
   m_SizeDelta: {x: 1939.9, y: 1140.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577486892
@@ -798,7 +798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -748.88, y: 436.18002}
+  m_AnchoredPosition: {x: -755.66, y: 420}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216401123
@@ -1042,7 +1042,6 @@ MonoBehaviour:
   audioInvuOff: {fileID: 8300000, guid: 5d0fe983ca869fc4f9b13efb6448f457, type: 3}
   repairkit: {fileID: 0}
   score: 0
-  roundtime: 120
 --- !u!82 &1495162723
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1483,9 +1482,29 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1951891142729280672, guid: c83eb10c227c14c409cc36fe2204f08f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951891142729280672, guid: c83eb10c227c14c409cc36fe2204f08f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951891142729280672, guid: c83eb10c227c14c409cc36fe2204f08f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3237303307647660034, guid: c83eb10c227c14c409cc36fe2204f08f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237303307647660034, guid: c83eb10c227c14c409cc36fe2204f08f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237303307647660034, guid: c83eb10c227c14c409cc36fe2204f08f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3237303307647660034, guid: c83eb10c227c14c409cc36fe2204f08f, type: 3}
       propertyPath: m_LocalPosition.x

@@ -16,6 +16,7 @@ public class GameOver : MonoBehaviour
     public Text timertext;
     public Text timeInvu;
     public Collider2D rigidtruck;
+    SpriteRenderer truckRenderer;
     public AudioSource audioSource;
     public AudioClip audioSPikeBuster;
     public AudioClip audioClip;
@@ -27,13 +28,16 @@ public class GameOver : MonoBehaviour
     //el score se va sumando por la duracion de la partida
     public int score =0;
     float invulnerabilitySec =10f;
-    public float roundtime =30;
+    float roundtime =80;
     bool invuOn = false;
     bool shieldOn = false; 
+    Color busterOn = new Color(110,17,71);
+    Color busterOf = new Color(255,255,255);
   void Start()
   {
     //carga el valor inicial de las vidas en el cuadro de hp
         heartext.text = hearts.ToString();
+        truckRenderer= rigidtruck.gameObject.GetComponent<SpriteRenderer>();
   }
 
  void  Update()
@@ -96,6 +100,7 @@ public class GameOver : MonoBehaviour
             audioSource.PlayOneShot(audioSPikeBuster);
             shieldOn = true;
             Destroy(collision.gameObject);
+            truckRenderer.color = busterOn;
             
 
           }        
@@ -105,6 +110,7 @@ public class GameOver : MonoBehaviour
             Destroy(collision.gameObject);
             audioSource.PlayOneShot(audioHit);
             shieldOn = false;
+            truckRenderer.color = busterOn;
           }
             
           else if( collision.gameObject.tag == "bola" && hearts >=1)
